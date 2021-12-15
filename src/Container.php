@@ -42,7 +42,7 @@ class Container extends Pimple implements ContainerInterface
     public function baseProviders(): array
     {
         return [
-            \Cblink\Service\IDaas\Providers\ClientServiceProvider::class,
+            \Cblink\Service\Foundation\Providers\ClientServiceProvider::class,
         ];
     }
 
