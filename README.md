@@ -1,4 +1,4 @@
-<h1 align="center"> idaas-sdk </h1>
+<h1 align="center"> foundation-sdk </h1>
 
 <p align="center"> .</p>
 
@@ -6,7 +6,7 @@
 ## Installing
 
 ```shell
-$ composer require cblink-service/idaas-sdk -vvv
+$ composer require cblink-service/foundation -vvv
 ```
 
 ## Usage
