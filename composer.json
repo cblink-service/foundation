@@ -1,0 +1,25 @@
+{
+    "name": "cblink-service/foundation",
+    "description": "Package description here.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nick",
+            "email": "me@xieying.vip"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-json": "*",
+        "pimple/pimple": "^3.5",
+        "hyperf/utils": "^2.2",
+        "hyperf/guzzle": "^2.2",
+        "psr/simple-cache": "^3.0 || ^1.0",
+        "symfony/cache": "^6.0 || ^5.0 || ^4.3 || ^3.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cblink\\Service\\Foundation\\": "src"
+        }
+    }
+}
