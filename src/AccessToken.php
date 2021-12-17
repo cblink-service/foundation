@@ -47,7 +47,7 @@ class AccessToken
         /** @var array $token */
         $token = $this->requestToken();
 
-        $this->setToken(Arr::get($token['data'], $this->tokenKey), (int) Arr::get($token['data'], $this->lifeKey, 7200));
+        $this->setToken(Arr::get($token, $this->tokenKey), (int) Arr::get($token, $this->lifeKey, 7200));
 
         return $token;
     }
@@ -96,7 +96,7 @@ class AccessToken
             throw new HttpClientException('Request access_token fail: '. json_encode($body, JSON_UNESCAPED_UNICODE));
         }
 
-        return $body;
+        return Arr::get($body, 'data', []);
     }
 
     /**
