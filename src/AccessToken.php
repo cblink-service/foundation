@@ -40,7 +40,7 @@ class AccessToken
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
 
-        if ($cache->has($cacheKey) && $result = $cache->get($cacheKey)) {
+        if ($cache->has($cacheKey) && !empty($result = $cache->get($cacheKey))) {
             return $result;
         }
 
@@ -108,7 +108,7 @@ class AccessToken
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', sprintf('Bearer %s', $this->getToken()[$this->tokenKey]));
+        return $request->withHeader('Authorization', sprintf('Bearer %s', Arr::get($this->getToken(), $this->tokenKey)));
     }
 
     /**
