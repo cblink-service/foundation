@@ -18,14 +18,15 @@ class BaseApi
     public $app;
 
     /**
-     * @var AccessToken
+     * @var AccessToken|null
      */
-    public $accessToken;
+    public $accessToken = null;
 
     public function __construct(Container $container, $accessToken = null)
     {
         $this->app = $container;
-        $this->accessToken = $accessToken ?? $this->app['access_token'];
+
+        $this->accessToken = $accessToken ?? $this->app->has('access_token') ? $this->app['access_token'] : null;
     }
 
     /**
