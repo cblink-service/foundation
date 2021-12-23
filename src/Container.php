@@ -7,6 +7,10 @@ use Hyperf\Utils\Collection;
 use Pimple\Container as Pimple;
 use Psr\Container\ContainerInterface;
 
+/**
+ * @property Collection $config
+ * @property \GuzzleHttp\Client $client
+ */
 class Container extends Pimple implements ContainerInterface
 {
     /**
