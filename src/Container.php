@@ -10,6 +10,7 @@ use Psr\Container\ContainerInterface;
 /**
  * @property Collection $config
  * @property \GuzzleHttp\Client $client
+ * @property Providers\BaseClient $base
  */
 class Container extends Pimple implements ContainerInterface
 {
