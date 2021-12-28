@@ -37,7 +37,7 @@ class BaseApi
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpGet($url, array $query = [])
+    public function httpGet($url, array $query = [])
     {
         return $this->request('GET', $url, ['query' => $query]);
     }
@@ -51,7 +51,7 @@ class BaseApi
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpPost(string $url, array $data = [], array $query = [])
+    public function httpPost(string $url, array $data = [], array $query = [])
     {
         return $this->request('POST', $url, ['query' => $query, 'json' => $data]);
     }
@@ -65,7 +65,7 @@ class BaseApi
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpPut(string $url, array $data = [], array $query = [])
+    public function httpPut(string $url, array $data = [], array $query = [])
     {
         return $this->request('PUT', $url, ['query' => $query, 'json' => $data]);
     }
@@ -78,7 +78,7 @@ class BaseApi
      * @return \Psr\Http\Message\ResponseInterface|string
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function httpDelete($url, array $query = [])
+    public function httpDelete($url, array $query = [])
     {
         return $this->request('DELETE', $url, ['query' => $query]);
     }
