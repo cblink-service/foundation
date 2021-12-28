@@ -9,7 +9,7 @@ class BaseServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple)
     {
-        $pimple['client'] = function($pimple){
+        $pimple['base'] = function($pimple){
             return new BaseClient($pimple);
         };
     }
