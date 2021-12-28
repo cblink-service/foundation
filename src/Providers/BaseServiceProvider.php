@@ -1,6 +1,6 @@
 <?php
 
-namespace Cblink\Service\foundation\Providers;
+namespace Cblink\Service\Foundation\Providers;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
