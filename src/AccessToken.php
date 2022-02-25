@@ -47,7 +47,9 @@ class AccessToken
         /** @var array $token */
         $token = $this->requestToken();
 
-        $this->setToken(Arr::get($token, $this->tokenKey), (int) Arr::get($token, $this->lifeKey, 7200));
+        $lifeTime = (int) Arr::get($token, $this->lifeKey, 7200);
+        // 缩短过期时间
+        $this->setToken(Arr::get($token, $this->tokenKey), ($lifeTime - 10));
 
         return $token;
     }
