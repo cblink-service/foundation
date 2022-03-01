@@ -130,12 +130,18 @@ class AccessToken
     {
         $baseUrl = '';
 
-        if(!empty($this->app['config']->get('base_url'))) {
+        if(! empty($this->app['config']->get('base_url'))) {
             $baseUrl = $this->app['config']->get('base_url');
+        }
+
+        if (method_exists($this, 'getBaseUrl')) {
+            $baseUrl = $this->getBaseUrl();
         }
 
         return rtrim($baseUrl, '/') . '/' . ltrim($url, '/');
     }
+
+
 
     /**
      * Credential for get token.
