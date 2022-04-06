@@ -62,7 +62,7 @@ class AccessToken
      * @return $this
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function setToken($token, int $lifetime = 7200): AccessToken
+    public function setToken($token, int $lifetime = 7200)
     {
         $this->getCache()->set($this->getCacheKey(), [
             $this->tokenKey => $token,
@@ -108,7 +108,7 @@ class AccessToken
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
+    public function applyToRequest(RequestInterface $request, array $requestOptions = [])
     {
         return $request->withHeader('Authorization', sprintf('Bearer %s', Arr::get($this->getToken(), $this->tokenKey)));
     }
@@ -116,7 +116,7 @@ class AccessToken
     /**
      * @return string
      */
-    protected function getCacheKey(): string
+    protected function getCacheKey()
     {
         return 'access-token-' . md5(json_encode($this->getCredentials(), JSON_UNESCAPED_UNICODE));
     }
@@ -126,7 +126,7 @@ class AccessToken
      * @param $url
      * @return string
      */
-    protected function getRequestUrl($url): string
+    protected function getRequestUrl($url)
     {
         $baseUrl = '';
 
@@ -148,7 +148,7 @@ class AccessToken
      *
      * @return array
      */
-    protected function getCredentials(): array
+    protected function getCredentials()
     {
         return [
             'appid' => $this->app['config']->get('appid'),

@@ -17,7 +17,7 @@ class Container extends Pimple implements ContainerInterface
     /**
      * @var array
      */
-    protected array $providers = [];
+    protected $providers = [];
 
     public function __construct(array $config = [])
     {
@@ -44,7 +44,7 @@ class Container extends Pimple implements ContainerInterface
     /**
      * @return string[]
      */
-    public function baseProviders(): array
+    public function baseProviders()
     {
         return [
             Providers\ClientServiceProvider::class,
@@ -74,7 +74,7 @@ class Container extends Pimple implements ContainerInterface
      * @param string $id
      * @return bool
      */
-    public function has(string $id): bool
+    public function has(string $id)
     {
         return $this->offsetExists($id);
     }

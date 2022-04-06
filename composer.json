@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.2.5",
         "ext-json": "*",
         "pimple/pimple": "^3.5",
         "hyperf/utils": "^2.2",
