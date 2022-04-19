@@ -108,7 +108,7 @@ class BaseApi
      * @param ResponseInterface $response
      * @return array
      */
-    protected function castResponseToType(ResponseInterface $response)
+    protected function castResponseToType(ResponseInterface $response): array
     {
         $response->getBody()->rewind();
         $contents = $response->getBody()->getContents();
@@ -127,7 +127,7 @@ class BaseApi
      * @param $url
      * @return string
      */
-    protected function getRequestUrl($url)
+    protected function getRequestUrl($url): string
     {
         $baseUrl = '';
 
@@ -151,7 +151,7 @@ class BaseApi
      *
      * @return \Closure
      */
-    protected function accessTokenMiddleware()
+    protected function accessTokenMiddleware(): \Closure
     {
         return function (callable $handler) {
             return function (RequestInterface $request, array $options) use ($handler) {
