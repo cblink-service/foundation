@@ -4,7 +4,7 @@ namespace Cblink\Service\Foundation;
 
 use Cblink\Service\Foundation\Traits\HasHttpRequests;
 use Cblink\Service\Foundation\Traits\InteractsWithCache;
-use Hyperf\Utils\Arr;
+use Illuminate\Support\Arr;
 use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 

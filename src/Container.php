@@ -3,7 +3,7 @@
 namespace Cblink\Service\Foundation;
 
 use Closure;
-use Hyperf\Utils\Collection;
+use Illuminate\Support\Collection;
 use Pimple\Container as Pimple;
 use Psr\Container\ContainerInterface;
 
