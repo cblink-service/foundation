@@ -86,4 +86,23 @@ trait HasHttpRequests
 
         return $this;
     }
+
+    /**
+     * @param $url
+     * @return string
+     */
+    protected function getRequestUrl($url): string
+    {
+        $baseUrl = '';
+
+        if(! empty($this->app['config']->get('base_url'))) {
+            $baseUrl = $this->app['config']->get('base_url');
+        }
+
+        if (method_exists($this, 'getBaseUrl')) {
+            $baseUrl = $this->getBaseUrl();
+        }
+
+        return rtrim($baseUrl, '/') . '/' . ltrim($url, '/');
+    }
 }
