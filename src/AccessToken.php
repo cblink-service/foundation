@@ -121,28 +121,6 @@ class AccessToken
         return 'access-token-' . md5(json_encode($this->getCredentials(), JSON_UNESCAPED_UNICODE));
     }
 
-
-    /**
-     * @param $url
-     * @return string
-     */
-    protected function getRequestUrl($url): string
-    {
-        $baseUrl = '';
-
-        if(! empty($this->app['config']->get('base_url'))) {
-            $baseUrl = $this->app['config']->get('base_url');
-        }
-
-        if (method_exists($this, 'getBaseUrl')) {
-            $baseUrl = $this->getBaseUrl();
-        }
-
-        return rtrim($baseUrl, '/') . '/' . ltrim($url, '/');
-    }
-
-
-
     /**
      * Credential for get token.
      *

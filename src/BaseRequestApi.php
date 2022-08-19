@@ -124,21 +124,6 @@ class BaseRequestApi
     }
 
     /**
-     * @param $url
-     * @return string
-     */
-    protected function getRequestUrl($url): string
-    {
-        $baseUrl = '';
-
-        if(!empty($this->app['config']->get('base_url'))) {
-            $baseUrl = $this->app['config']->get('base_url');
-        }
-
-        return rtrim($baseUrl, '/') . '/' . ltrim($url, '/');
-    }
-
-    /**
      *
      */
     protected function registerHttpMiddlewares()
