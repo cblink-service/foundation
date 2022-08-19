@@ -2,7 +2,6 @@
 
 namespace Cblink\Service\Foundation;
 
-use Cblink\Service\Foundation\Traits\HasHttpRequests;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
