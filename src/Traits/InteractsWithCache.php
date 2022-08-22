@@ -2,7 +2,7 @@
 
 namespace Cblink\Service\Foundation\Traits;
 
-use Cblink\Service\IDaas\Container;
+use Cblink\Service\Foundation\Container;
 use InvalidArgumentException;
 use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
