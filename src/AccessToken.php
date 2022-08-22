@@ -95,7 +95,7 @@ class AccessToken
         }
 
         if (!isset($body['err_code']) || $body['err_code'] > 0) {
-            throw new HttpClientException('Request access_token fail: '. json_encode($body, JSON_UNESCAPED_UNICODE));
+            throw new HttpClientException('Request access_token fail: '. json_encode($body, JSON_UNESCAPED_UNICODE) .', url: '. $this->getRequestUrl($this->endpointToGetToken));
         }
 
         return Arr::get($body, 'data', []);
