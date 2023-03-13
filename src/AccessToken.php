@@ -41,7 +41,7 @@ class AccessToken
         $cache = $this->getCache();
 
         if ($cache->has($cacheKey) && !empty($result = $cache->get($cacheKey))) {
-            return $result;
+            return Arr::get($result, $this->tokenKey);
         }
 
         /** @var array $token */
@@ -49,9 +49,9 @@ class AccessToken
 
         $lifeTime = (int) Arr::get($token, $this->lifeKey, 7200);
         // 缩短过期时间
-        $this->setToken(Arr::get($token, $this->tokenKey), ($lifeTime - 10));
+        $this->setToken($accessToken = Arr::get($token, $this->tokenKey), ($lifeTime - 10));
 
-        return $token;
+        return $accessToken;
     }
 
     /**
@@ -110,7 +110,7 @@ class AccessToken
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', sprintf('Bearer %s', Arr::get($this->getToken(), $this->tokenKey)));
+        return $request->withHeader('Authorization', sprintf('Bearer %s', $this->getToken()));
     }
 
     /**
