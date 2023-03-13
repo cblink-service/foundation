@@ -93,7 +93,7 @@ class BaseRequestApi
      * @return \Psr\Http\Message\ResponseInterface|array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function request(string $method = 'POST', string $url = '', array $options = [], $returnRaw = false)
+    public function request(string $method = 'POST', string $url = '', array $options = [], bool $returnRaw = false)
     {
         if (empty($this->middlewares) && method_exists($this, 'registerHttpMiddlewares')) {
             $this->registerHttpMiddlewares();
