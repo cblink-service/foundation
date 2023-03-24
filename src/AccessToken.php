@@ -22,6 +22,7 @@ class AccessToken
     protected string $lifeKey = 'expire';
 
     protected string $endpointToGetToken = 'api/access-token';
+    protected string $authType = 'Bearer';
 
     public function __construct(Container $app)
     {
@@ -110,7 +111,7 @@ class AccessToken
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', sprintf('Bearer %s', $this->getToken()));
+        return $request->withHeader('Authorization', trim(sprintf('%s %s', $this->authType, $this->getToken())));
     }
 
     /**
