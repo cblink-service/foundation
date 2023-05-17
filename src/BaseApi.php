@@ -7,7 +7,6 @@ use Psr\Http\Message\ResponseInterface;
 
 class BaseApi extends BaseRequestApi
 {
-
     protected function registerHttpMiddlewares()
     {
         $this->pushMiddleware($this->accessTokenMiddleware(), 'access-token');

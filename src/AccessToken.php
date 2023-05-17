@@ -2,13 +2,14 @@
 
 namespace Cblink\Service\Foundation;
 
+use Cblink\Service\Foundation\Contracts\AccessTokenInterface;
 use Cblink\Service\Foundation\Traits\HasHttpRequests;
 use Cblink\Service\Foundation\Traits\InteractsWithCache;
 use Hyperf\Utils\Arr;
 use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 
-class AccessToken
+class AccessToken implements AccessTokenInterface
 {
     use InteractsWithCache, HasHttpRequests;
 
@@ -22,6 +23,7 @@ class AccessToken
     protected string $lifeKey = 'expire';
 
     protected string $endpointToGetToken = 'api/access-token';
+    protected string $authType = 'Bearer';
 
     public function __construct(Container $app)
     {
@@ -35,13 +37,13 @@ class AccessToken
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getToken()
+    public function getToken(RequestInterface $request, array $requestOptions = [])
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
 
         if ($cache->has($cacheKey) && !empty($result = $cache->get($cacheKey))) {
-            return $result;
+            return Arr::get($result, $this->tokenKey);
         }
 
         /** @var array $token */
@@ -49,9 +51,9 @@ class AccessToken
 
         $lifeTime = (int) Arr::get($token, $this->lifeKey, 7200);
         // 缩短过期时间
-        $this->setToken(Arr::get($token, $this->tokenKey), ($lifeTime - 10));
+        $this->setToken($accessToken = Arr::get($token, $this->tokenKey), ($lifeTime - 10));
 
-        return $token;
+        return $accessToken;
     }
 
     /**
@@ -110,7 +112,7 @@ class AccessToken
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', sprintf('Bearer %s', Arr::get($this->getToken(), $this->tokenKey)));
+        return $request->withHeader('Authorization', trim(sprintf('%s %s', $this->authType, $this->getToken($request, $requestOptions))));
     }
 
     /**

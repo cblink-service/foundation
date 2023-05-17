@@ -3,7 +3,6 @@
 namespace Cblink\Service\Foundation;
 
 use Cblink\Service\Foundation\Traits\HasHttpRequests;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class BaseRequestApi
@@ -93,7 +92,7 @@ class BaseRequestApi
      * @return \Psr\Http\Message\ResponseInterface|array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function request(string $method = 'POST', string $url = '', array $options = [], $returnRaw = false)
+    public function request(string $method = 'POST', string $url = '', array $options = [], bool $returnRaw = false)
     {
         if (empty($this->middlewares) && method_exists($this, 'registerHttpMiddlewares')) {
             $this->registerHttpMiddlewares();
