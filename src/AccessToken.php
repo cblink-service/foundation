@@ -36,7 +36,7 @@ class AccessToken
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getToken()
+    public function getToken(RequestInterface $request, array $requestOptions = [])
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
@@ -111,7 +111,7 @@ class AccessToken
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', trim(sprintf('%s %s', $this->authType, $this->getToken())));
+        return $request->withHeader('Authorization', trim(sprintf('%s %s', $this->authType, $this->getToken($request, $requestOptions))));
     }
 
     /**
