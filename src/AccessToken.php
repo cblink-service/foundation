@@ -51,7 +51,7 @@ class AccessToken implements AccessTokenInterface
 
         $lifeTime = (int) Arr::get($token, $this->lifeKey, 7200);
         // 缩短过期时间
-        $this->setToken($accessToken = Arr::get($token, $this->tokenKey), ($lifeTime - 10));
+        $this->setToken($accessToken = sprintf('%s %s',$this->authType, Arr::get($token, $this->tokenKey)), ($lifeTime - 10));
 
         return $accessToken;
     }
@@ -112,7 +112,7 @@ class AccessToken implements AccessTokenInterface
      */
     public function applyToRequest(RequestInterface $request, array $requestOptions = []): RequestInterface
     {
-        return $request->withHeader('Authorization', trim(sprintf('%s %s', $this->authType, $this->getToken($request, $requestOptions))));
+        return $request->withHeader('Authorization', $this->getToken($request, $requestOptions));
     }
 
     /**
