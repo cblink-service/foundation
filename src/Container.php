@@ -10,7 +10,6 @@ use Psr\Container\ContainerInterface;
 /**
  * @property Collection $config
  * @property \GuzzleHttp\Client $client
- * @property BaseApi $base
  */
 class Container extends Pimple implements ContainerInterface
 {
@@ -48,7 +47,6 @@ class Container extends Pimple implements ContainerInterface
     {
         return [
             Providers\ClientServiceProvider::class,
-            Providers\BaseServiceProvider::class,
         ];
     }
 
