@@ -37,7 +37,7 @@ class AccessToken implements AccessTokenInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getToken(RequestInterface $request, array $requestOptions = [])
+    public function getToken(RequestInterface $request = null, array $requestOptions = [])
     {
         $cacheKey = $this->getCacheKey();
         $cache = $this->getCache();
